@@ -1,23 +1,47 @@
-import logo from './logo.svg';
+import { useState } from 'react';
+
+//Estilos
 import './App.css';
 
+//Assets
+import freeCodeCampLogo from './assets/images/freecodecamp-logo.png';
+
+//Componentes personalizados
+import Boton from './components/Boton';
+import Contador from './components/Contador';
+
 function App() {
+
+  const [clicks, setClicks] = useState(0)
+
+  const handleClick = () => {
+
+    setClicks(clicks + 1);
+  };
+
+  const handleReset = () => {
+
+    setClicks(0);
+  };
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <div className="freecodecamp-logo-contenedor">
+        <img src={freeCodeCampLogo} className='freecodecamp-logo' alt="Logo de freeCodeCamp" />
+      </div>
+      <div className="contenedor-principal">
+        <Contador numClics={clicks} />
+        <Boton
+          texto={'Click'}
+          esBotonDeClic={true}
+          handleClick={handleClick}
+        />
+        <Boton
+          texto={'Reiniciar'}
+          esBotonDeClic={false}
+          handleClick={handleReset}
+        />
+      </div>
     </div>
   );
 }
